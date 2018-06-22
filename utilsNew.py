@@ -64,6 +64,28 @@ def getSnapshot(graph, timeSlot, targetDataPath):
 		pickle.dump(snapshots, handle)
 	return snapshots
 
+def getSnapshot(graph, snapshotNum, targetDataPath):
+
+	diffEndTime = graph[0,-1]
+	# snapshotNum = math.floor(diffEndTime/timeSlot) + 1
+	timeSlot = (diffEndTime+1)/snapshots
+
+	snapshots = [0] * snapshotNum
+	index = 0
+	edgeNum = np.shape(graph)[1]
+
+	for i in range(1, snapshotNum+1):
+		tempTime = timeSlot * i
+		tempsnapshot = np.array([(0), (0)])
+		while graph[0, index] < tempTime and index < edgeNum:
+			tempsnapshot = np.append([tempsnapshot], [graph[1:3, index]], axis=1)
+			index += 1
+
+	with open(targetDataPath, 'wb') as handle:
+		pickle.dump(snapshots, handle)
+	return snapshots
+
+
 # saveSubgraph(dataPath, picklePath)
 
 

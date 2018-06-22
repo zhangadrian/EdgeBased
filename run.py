@@ -28,4 +28,4 @@ tf.flags.DEFINE_float('dropout_prob', 1.0, 'dropout_prob')
 config = tf.flags.FLAGS 
 
 def get_batch(sourceNodeList, targetNodeList, batch_size=32):
-	print('Test')
+	print('Test1')
